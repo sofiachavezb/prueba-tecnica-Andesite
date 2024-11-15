@@ -12,7 +12,6 @@ def aggregate_daily_tons()->pd.DataFrame:
 
     df = pd.read_csv(df_path)
 
-    print(df)
     daily_tons = df.groupby('date')['ton'].sum().reset_index(name='daily_tons')
     daily_tons['date'] = pd.to_datetime(daily_tons['date'])
 

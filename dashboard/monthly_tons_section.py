@@ -1,11 +1,7 @@
-from typing import Dict
 from data import *
-from plotly.subplots import make_subplots
 from dash import html, dcc
-from dash.dependencies import Output, Input
-
 import plotly.express as px
-
+from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
@@ -41,8 +37,8 @@ def graph_detailed_monthly_dist() -> go.Figure:
         fig.update_yaxes(range=[y_min, y_max], row=row, col=col)
 
     fig.update_layout(
-        title="Distribución de registros diarios por mes",
-        yaxis=dict(title="Cantidad de registros diarios", 
+        title="Distribución de ciclos diarios por mes",
+        yaxis=dict(title="Cantidad de ciclos diarios", 
         range=[y_min, y_max]),
         height=500 * rows,
     )
@@ -60,13 +56,13 @@ def graph_comparative_monthly_dist() -> go.Figure:
                 y='daily_tons', 
                 box=True,
                 orientation='v',
-                title="Distribución de registros diarios por mes",
-                labels={'month': 'Mes', 'tons': 'Cantidad de registros diarios'},
+                title="Distribución de ciclos diarios por mes",
+                labels={'month': 'Mes', 'tons': 'Cantidad de ciclos diarios'},
                 width=1000,
                 height=500)
     
     graph.update_layout(
-        yaxis=dict(title="Cantidad de registros diarios"),
+        yaxis=dict(title="Cantidad de ciclos diarios"),
         xaxis=dict(title="Mes"),
         violinmode='overlay'
     )
@@ -99,7 +95,7 @@ def graph_monthly_statistics() -> go.Figure:
     fig.update_layout(
         title='Estadísticas mensuales',
         xaxis_title='Mes',
-        yaxis_title='Cantidad de registros'
+        yaxis_title='Cantidad de ciclos'
     )
 
     return fig
@@ -107,15 +103,14 @@ def graph_monthly_statistics() -> go.Figure:
 
 monthly_distribution_analysis_texts = [
 """
-Para los distintos meses se observan distintas distribuciones de registros diarios.
-Meses como julio de 2023 presentan una cola larga hacia los pocos registros, mientras mayo de 2024
-es el caso contrario, con una cola más larga hacia los registros altos, aunque no tan pronunciada
+Para los distintos meses se observan distintas distribuciones de ciclos diarios.
+Meses como julio de 2023 presentan una cola larga hacia los pocos ciclos, mientras mayo de 2024
+es el caso contrario, con una cola más larga hacia los ciclos altos, aunque no tan pronunciada
 como en julio de 2023.
 """,
 """
-Se observa que en general los meses presentan una distribución con una región central más densa,
-con skews que varían según valores extremos y con una cantidad de registros que aumentan entre 2023
-y 2024.
+En general los meses presentan una distribución con una región central más densa, con skews que 
+varían según valores extremos y con una cantidad de ciclos que aumentan entre 2023 y 2024.
 """
 ]
 
@@ -125,7 +120,7 @@ def layout()->html.Div:
     section = html.Div(
         id='monthly-tons-section',
         children=[
-            html.H1('Cantidad de registros mensuales por mes'),
+            html.H1('Cantidad de ciclos mensuales por mes'),
             dcc.RadioItems(
                 id='view-toggle',
                 options=[
