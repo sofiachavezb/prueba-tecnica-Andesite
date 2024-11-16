@@ -236,7 +236,7 @@ def layout()->html.Div:
             html.H1('Ciclos diarios de camiones'),
             dcc.Graph(figure=graph_daily_trucks_vs_time()),
             *analysis_1,
-            dcc.Graph(graph_trucks_daily_cycles_satistics())
+            dcc.Graph(figure=graph_trucks_daily_cycles_satistics()),
             *analysis_2,
             html.Hr(),
             html.H2('Peores camiones en cantidad de ciclos diarios'),
